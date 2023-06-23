@@ -155,16 +155,15 @@ class HomeViewController: BaseViewController {
         viewModel.isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
-                if $0 {
-                    self?.loadingIndicator.startAnimating()
-                } else {
-                    self?.loadingIndicator.stopAnimating()
-                }
+                $0 ? self?.loadingIndicator.startAnimating() : self?.loadingIndicator.stopAnimating()
             }.store(in: &cancellables)
     }
     
     private func setupPickView() {
-        areaPickTableView.frame = CGRect(x: searchView.frame.origin.x, y: searchView.frame.origin.y + searchView.frame.height + 8, width: searchView.frame.width, height: 0)
+        areaPickTableView.frame = CGRect(x: searchView.frame.origin.x,
+                                         y: searchView.frame.maxY + 8,
+                                         width: searchView.frame.width,
+                                         height: 0)
     }
     
     @objc private func showAreaPickView() {
