@@ -8,18 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		4C4217552A42A9B500616A4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4217542A42A9B500616A4B /* AppDelegate.swift */; };
-		4C4217592A42A9B500616A4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4217582A42A9B500616A4B /* ViewController.swift */; };
 		4C42175E2A42A9B600616A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C42175D2A42A9B600616A4B /* Assets.xcassets */; };
 		4C4217612A42A9B600616A4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C42175F2A42A9B600616A4B /* LaunchScreen.storyboard */; };
+		4CC15A442A42C37100C16FDD /* UbikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A432A42C37100C16FDD /* UbikeModel.swift */; };
+		4CC15A482A42C3A000C16FDD /* UbikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A472A42C3A000C16FDD /* UbikeViewModel.swift */; };
+		4CC15A4B2A42C3F700C16FDD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A4A2A42C3F700C16FDD /* MenuView.swift */; };
+		4CC15A4D2A42C41700C16FDD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A4C2A42C41700C16FDD /* HomeViewController.swift */; };
+		4CC15A4F2A42C61600C16FDD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A4E2A42C61600C16FDD /* Extensions.swift */; };
+		4CC15A512A42CA7E00C16FDD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A502A42CA7E00C16FDD /* BaseViewController.swift */; };
+		4CC15A562A42E39000C16FDD /* UbikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A552A42E39000C16FDD /* UbikeTableViewCell.swift */; };
+		4CC15A582A438A3800C16FDD /* DistrictPickTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A572A438A3800C16FDD /* DistrictPickTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C4217512A42A9B500616A4B /* BatiOS_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BatiOS_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C4217542A42A9B500616A4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4C4217582A42A9B500616A4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C42175D2A42A9B600616A4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C4217602A42A9B600616A4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C4217622A42A9B600616A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CC15A432A42C37100C16FDD /* UbikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbikeModel.swift; sourceTree = "<group>"; };
+		4CC15A472A42C3A000C16FDD /* UbikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbikeViewModel.swift; sourceTree = "<group>"; };
+		4CC15A4A2A42C3F700C16FDD /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		4CC15A4C2A42C41700C16FDD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4CC15A4E2A42C61600C16FDD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4CC15A502A42CA7E00C16FDD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4CC15A552A42E39000C16FDD /* UbikeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbikeTableViewCell.swift; sourceTree = "<group>"; };
+		4CC15A572A438A3800C16FDD /* DistrictPickTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictPickTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +67,67 @@
 			isa = PBXGroup;
 			children = (
 				4C4217542A42A9B500616A4B /* AppDelegate.swift */,
-				4C4217582A42A9B500616A4B /* ViewController.swift */,
 				4C42175D2A42A9B600616A4B /* Assets.xcassets */,
 				4C42175F2A42A9B600616A4B /* LaunchScreen.storyboard */,
 				4C4217622A42A9B600616A4B /* Info.plist */,
+				4CC15A452A42C37900C16FDD /* Model */,
+				4CC15A462A42C38200C16FDD /* View */,
+				4CC15A492A42C3A500C16FDD /* ViewModel */,
+				4CC15A522A42D90600C16FDD /* Extensions */,
 			);
 			path = BatiOS_HW;
+			sourceTree = "<group>";
+		};
+		4CC15A452A42C37900C16FDD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4CC15A432A42C37100C16FDD /* UbikeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4CC15A462A42C38200C16FDD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4CC15A532A42E36B00C16FDD /* Cell */,
+				4CC15A542A42E37B00C16FDD /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4CC15A492A42C3A500C16FDD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4CC15A472A42C3A000C16FDD /* UbikeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4CC15A522A42D90600C16FDD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4CC15A4E2A42C61600C16FDD /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4CC15A532A42E36B00C16FDD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4CC15A552A42E39000C16FDD /* UbikeTableViewCell.swift */,
+				4CC15A572A438A3800C16FDD /* DistrictPickTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		4CC15A542A42E37B00C16FDD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4CC15A502A42CA7E00C16FDD /* BaseViewController.swift */,
+				4CC15A4C2A42C41700C16FDD /* HomeViewController.swift */,
+				4CC15A4A2A42C3F700C16FDD /* MenuView.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,8 +200,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C4217592A42A9B500616A4B /* ViewController.swift in Sources */,
+				4CC15A4D2A42C41700C16FDD /* HomeViewController.swift in Sources */,
+				4CC15A4F2A42C61600C16FDD /* Extensions.swift in Sources */,
+				4CC15A4B2A42C3F700C16FDD /* MenuView.swift in Sources */,
 				4C4217552A42A9B500616A4B /* AppDelegate.swift in Sources */,
+				4CC15A442A42C37100C16FDD /* UbikeModel.swift in Sources */,
+				4CC15A512A42CA7E00C16FDD /* BaseViewController.swift in Sources */,
+				4CC15A582A438A3800C16FDD /* DistrictPickTableViewCell.swift in Sources */,
+				4CC15A562A42E39000C16FDD /* UbikeTableViewCell.swift in Sources */,
+				4CC15A482A42C3A000C16FDD /* UbikeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

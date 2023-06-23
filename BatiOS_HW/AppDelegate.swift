@@ -14,8 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()  ///set the root VC here
-        
+        window?.rootViewController = HomeViewController(viewModel: UbikeViewModel())  ///set the root VC here
         return true
     }
     
