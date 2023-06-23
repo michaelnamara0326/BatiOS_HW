@@ -8,12 +8,6 @@
 import Foundation
 import Combine
 
-enum UbikeError: Error {
-    case invalidURL
-    case decodeFail
-    case responseError
-}
-
 class UbikeViewModel {
     @Published var ubikeDataSource = [String : [String]]()
     private(set) var isLoading = PassthroughSubject<Bool, Never>()
@@ -21,26 +15,16 @@ class UbikeViewModel {
     func fetchUbike() {
         self.isLoading.send(true)
         let endpoint = "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-        
-        guard let url = URL(string: endpoint) else {
-            print("nope")
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                do {
-                    let decoder = JSONDecoder()
-                    let data = try decoder.decode([UbikeModel].self, from: data)
-                        self.ubikeDataSource = self.convertToDict(data: data)
-                } catch {
-                    print("false")
-                }
-            } else {
-                print("nope")
+        NetworkManager.shared.requestData(url: endpoint) { (result: Result<[UbikeModel], NetworkError>) in
+            switch result {
+            case .success(let data):
+                self.ubikeDataSource = self.convertToDict(data: data)
+            case .failure(let error):
+                //error handling ex: show alert
+                debugPrint(error)
             }
             self.isLoading.send(false)
-        }.resume()
+        }
     }
     
     private func convertToDict(data: [UbikeModel]) -> [String : [String]] {

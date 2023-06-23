@@ -1,5 +1,5 @@
 //
-//  DistrictPickTableViewCell.swift
+//  AreaPickTableViewCell.swift
 //  BatiOS_HW
 //
 //  Created by Michael Namara on 2023/6/22.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DistrictPickTableViewCell: UITableViewCell {
+class AreaPickTableViewCell: UITableViewCell {
     
-    private let districtLabel: UILabel = {
+    private let areaLabel: UILabel = {
         let label = UILabel()
         label.deactiveAutoresizingMask()
         label.text = "test"
@@ -28,24 +28,21 @@ class DistrictPickTableViewCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected {
-            districtLabel.textColor = .customsRGB(r: 184, g: 204, b: 31)
-        } else {
-            districtLabel.textColor = .black
-        }
+        areaLabel.textColor = selected ? .ubikeGreen : .black
     }
     
     private func setupUI() {
-        contentView.backgroundColor = .customsRGB(r: 246, g: 246, b: 246)
-        contentView.addSubview(districtLabel)
+        contentView.backgroundColor = .customRgb246
+        contentView.addSubview(areaLabel)
         
         NSLayoutConstraint.activate([
-            districtLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            districtLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
+            areaLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            areaLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            areaLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
     func configure(text: String) {
-        districtLabel.text = text
+        areaLabel.text = text
     }
 }

@@ -47,7 +47,7 @@ class BaseViewController: UIViewController {
     let separatorImageView: UIView = {
         let view = UIView()
         view.deactiveAutoresizingMask()
-        view.backgroundColor = .customsRGB(r: 235, g: 235, b: 235)
+        view.backgroundColor = .customRgb235
         return view
     }()
     
@@ -128,8 +128,4 @@ extension BaseViewController: MenuViewDelegate {
         }
         showMenu()
     }
-}
-#Preview {
-    let view = HomeViewController(viewModel: UbikeViewModel())
-    return view
 }

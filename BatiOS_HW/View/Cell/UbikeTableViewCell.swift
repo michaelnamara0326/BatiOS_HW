@@ -34,7 +34,7 @@ class UbikeTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        contentView.backgroundColor = .customsRGB(r: 184, g: 204, b: 31)
+        contentView.backgroundColor = .ubikeGreen
         for (index, elem) in Ubike.allCases.enumerated() {
             titleLabels[index].font = .PingFangTC(fontSize: 16, weight: .medium)
             titleLabels[index].textColor = .white
@@ -43,21 +43,20 @@ class UbikeTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        contentView.backgroundColor = .customsRGB(r: 184, g: 204, b: 31)
+        contentView.backgroundColor = .ubikeGreen
         
         contentView.addSubviews(views: titleLabels)
-        
         NSLayoutConstraint.activate([
             //cityLabel
             titleLabels[0].topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             titleLabels[0].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             titleLabels[0].bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
-            titleLabels[0].widthAnchor.constraint(equalToConstant: contentView.frame.width * 1 / 5),
+            titleLabels[0].widthAnchor.constraint(equalToConstant: 50),
             
             //areaLabel
             titleLabels[1].centerYAnchor.constraint(equalTo: titleLabels[0].centerYAnchor),
             titleLabels[1].leadingAnchor.constraint(equalTo: titleLabels[0].trailingAnchor, constant: 28),
-            titleLabels[1].widthAnchor.constraint(equalToConstant: contentView.frame.width * 1 / 5),
+            titleLabels[1].widthAnchor.constraint(equalToConstant: 50),
             
             //siteLabel
             titleLabels[2].centerYAnchor.constraint(equalTo: titleLabels[1].centerYAnchor),
@@ -65,16 +64,16 @@ class UbikeTableViewCell: UITableViewCell {
             titleLabels[2].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             titleLabels[2].topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             titleLabels[2].bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            titleLabels[2].widthAnchor.constraint(equalToConstant: contentView.frame.width * 3 / 5)
+//            titleLabels[2].widthAnchor.constraint(equalToConstant: 170)
         ])
         
         
     }
     
-    func configure(district: String, site: String, row: Int) {
+    func configure(area: String, site: String, row: Int) {
         contentView.backgroundColor = (row % 2 == 0) ? .white : .customsRGB(r: 246, g: 246, b: 246)
         titleLabels[0].text = "台北市"
-        titleLabels[1].text = district
+        titleLabels[1].text = area
         titleLabels[2].text = site
         for i in 0 ..< Ubike.allCases.count {
             titleLabels[i].textColor = .customsRGB(r: 50, g: 50, b: 50)
@@ -83,14 +82,10 @@ class UbikeTableViewCell: UITableViewCell {
         
     }
 }
-
-enum Ubike: String, CaseIterable {
-    case city = "縣市"
-    case district = "區域"
-    case site = "站點名稱"
-}
-
-#Preview {
-    let view = HomeViewController(viewModel: UbikeViewModel())
-    return view
+extension UbikeTableViewCell {
+    enum Ubike: String, CaseIterable {
+        case city = "縣市"
+        case area = "區域"
+        case site = "站點名稱"
+    }
 }

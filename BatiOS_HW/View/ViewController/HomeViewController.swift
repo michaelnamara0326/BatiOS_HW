@@ -19,11 +19,9 @@ class HomeViewController: BaseViewController {
     }
     private var dataSource: [String:[String]] = [:] {
         didSet {
-            DispatchQueue.main.async {
-                self.areaList = Array(self.dataSource.keys).sorted(by: <)
-                self.ubikeSitesTableView.reloadData()
-                self.districtPickTableView.reloadData()
-            }
+            self.areaList = Array(self.dataSource.keys).sorted(by: <)
+            self.ubikeSitesTableView.reloadData()
+            self.areaPickTableView.reloadData()
         }
     }
     
@@ -31,7 +29,7 @@ class HomeViewController: BaseViewController {
         let label = UILabel()
         label.deactiveAutoresizingMask()
         label.text = "站點資訊"
-        label.textColor = .customsRGB(r: 184, g: 204, b: 31)
+        label.textColor = .ubikeGreen
         label.font = .PingFangTC(fontSize: 18, weight: .semibold)
         return label
     }()
@@ -40,16 +38,16 @@ class HomeViewController: BaseViewController {
         let view = UIView()
         view.deactiveAutoresizingMask()
         view.layer.cornerRadius = 8
-        view.backgroundColor = .customsRGB(r: 246, g: 246, b: 246)
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDistrictPickView)))
+        view.backgroundColor = .customRgb246
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAreaPickView)))
         return view
     }()
     
-    private let districtLabel: UILabel = {
+    private let areaLabel: UILabel = {
         let label = UILabel()
         label.deactiveAutoresizingMask()
         label.text = "搜尋站點"
-        label.textColor = .customsRGB(r: 174, g: 174, b: 174)
+        label.textColor = .customRgb174
         label.font = .PingFangTC(fontSize: 16, weight: .medium)
         return label
     }()
@@ -58,11 +56,11 @@ class HomeViewController: BaseViewController {
         let view = UIImageView()
         view.deactiveAutoresizingMask()
         view.image = UIImage(named: "search")?.withRenderingMode(.alwaysTemplate)
-        view.tintColor = .customsRGB(r: 174, g: 174, b: 174)
+        view.tintColor = .customRgb174
         return view
     }()
     
-    private lazy var districtPickTableView: UITableView = {
+    private lazy var areaPickTableView: UITableView = {
         let tableView = UITableView()
         tableView.deactiveAutoresizingMask()
         tableView.delegate = self
@@ -71,8 +69,8 @@ class HomeViewController: BaseViewController {
         tableView.separatorStyle = .none
         tableView.layer.cornerRadius = 8
         tableView.sectionHeaderTopPadding = 0
-        tableView.backgroundColor = .customsRGB(r: 246, g: 246, b: 246)
-        tableView.register(DistrictPickTableViewCell.self, forCellReuseIdentifier: DistrictPickTableViewCell.cellIdentifier)
+        tableView.backgroundColor = .customRgb246
+        tableView.register(AreaPickTableViewCell.self, forCellReuseIdentifier: AreaPickTableViewCell.cellIdentifier)
         return tableView
     }()
     
@@ -84,8 +82,8 @@ class HomeViewController: BaseViewController {
         tableView.separatorStyle = .none
         tableView.layer.cornerRadius = 8
         tableView.layer.borderWidth = 0.5
-        tableView.layer.borderColor = UIColor.customsRGB(r: 174, g: 174, b: 174).cgColor
-        tableView.backgroundColor = .customsRGB(r: 181, g: 204, b: 34)
+        tableView.layer.borderColor = UIColor.customRgb174.cgColor
+        tableView.backgroundColor = .ubikeGreen
         tableView.sectionHeaderTopPadding = 0
         tableView.deactiveAutoresizingMask()
         tableView.register(UbikeTableViewCell.self, forCellReuseIdentifier: UbikeTableViewCell.cellIdentifier)
@@ -115,8 +113,8 @@ class HomeViewController: BaseViewController {
     override func setupUI() {
         super.setupUI()
         
-        searchView.addSubviews(views: [districtLabel, searchIconImageView])
-        self.view.addSubviews(views: [titleLabel, searchView, ubikeSitesTableView, districtPickTableView, loadingIndicator, menuView])
+        searchView.addSubviews(views: [areaLabel, searchIconImageView])
+        self.view.addSubviews(views: [titleLabel, searchView, ubikeSitesTableView, areaPickTableView, loadingIndicator, menuView])
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
@@ -127,8 +125,8 @@ class HomeViewController: BaseViewController {
             searchView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             searchView.heightAnchor.constraint(equalToConstant: 40),
             
-            districtLabel.centerYAnchor.constraint(equalTo: searchView.centerYAnchor),
-            districtLabel.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 16),
+            areaLabel.centerYAnchor.constraint(equalTo: searchView.centerYAnchor),
+            areaLabel.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 16),
             
             searchIconImageView.centerYAnchor.constraint(equalTo: searchView.centerYAnchor),
             searchIconImageView.trailingAnchor.constraint(equalTo: searchView.trailingAnchor, constant: -18),
@@ -148,34 +146,30 @@ class HomeViewController: BaseViewController {
     // MARK: - Functions
     private func setupBinding() {
         viewModel.$ubikeDataSource
+            .receive(on: DispatchQueue.main)
             .dropFirst()
             .sink { [weak self] in
                 self?.dataSource = $0
             }.store(in: &cancellables)
         
         viewModel.isLoading
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 if $0 {
                     self?.loadingIndicator.startAnimating()
                 } else {
-                    DispatchQueue.main.async {
-                        self?.loadingIndicator.stopAnimating()
-                    }
+                    self?.loadingIndicator.stopAnimating()
                 }
             }.store(in: &cancellables)
     }
     
     private func setupPickView() {
-        districtPickTableView.frame = CGRect(x: searchView.frame.origin.x, y: searchView.frame.origin.y + searchView.frame.height + 8, width: searchView.frame.width, height: 0)
+        areaPickTableView.frame = CGRect(x: searchView.frame.origin.x, y: searchView.frame.origin.y + searchView.frame.height + 8, width: searchView.frame.width, height: 0)
     }
     
-    @objc private func showDistrictPickView() {
+    @objc private func showAreaPickView() {
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.4, delay: 0, options: .curveEaseInOut) {
-            if !self.isShow {
-                self.districtPickTableView.frame.size.height = 232
-            } else {
-                self.districtPickTableView.frame.size.height = 0
-            }
+            self.areaPickTableView.frame.size.height = self.isShow ? 0 : 232
             self.isShow.toggle()
         }
     }
@@ -185,13 +179,13 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tableView {
-        case districtPickTableView:
-            districtLabel.text = areaList[indexPath.row]
+        case areaPickTableView:
+            areaLabel.text = areaList[indexPath.row]
             filteredAreaSites = dataSource[areaList[indexPath.row]] ?? []
-            districtLabel.textColor = .customsRGB(r: 184, g: 204, b: 31)
-            searchIconImageView.tintColor = .customsRGB(r: 184, g: 204, b: 31)
+            areaLabel.textColor = .ubikeGreen
+            searchIconImageView.tintColor = .ubikeGreen
             ubikeSitesTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-            showDistrictPickView()
+            showAreaPickView()
             
         case ubikeSitesTableView:
             print("ubike site")
@@ -204,7 +198,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var row = 0
         switch tableView {
-        case districtPickTableView:
+        case areaPickTableView:
             row = areaList.count
             
         case ubikeSitesTableView:
@@ -218,15 +212,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView {
-        case districtPickTableView:
-            let cell = tableView.dequeueReusableCell(withIdentifier: DistrictPickTableViewCell.cellIdentifier, for: indexPath) as! DistrictPickTableViewCell
+        case areaPickTableView:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AreaPickTableViewCell.cellIdentifier, for: indexPath) as! AreaPickTableViewCell
             cell.configure(text: areaList[indexPath.row])
             return cell
             
         case ubikeSitesTableView:
             let cell = tableView.dequeueReusableCell(withIdentifier: UbikeTableViewCell.cellIdentifier, for: indexPath) as! UbikeTableViewCell
             if indexPath.row > 0 {
-                cell.configure(district: districtLabel.text!, site: filteredAreaSites[indexPath.row - 1], row: indexPath.row - 1)
+                cell.configure(area: areaLabel.text!, site: filteredAreaSites[indexPath.row - 1], row: indexPath.row - 1)
             }
             return cell
             

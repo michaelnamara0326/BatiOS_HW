@@ -8,6 +8,11 @@
 import UIKit
 
 extension UIColor {
+    static let ubikeGreen = UIColor.customsRGB(r: 184, g: 204, b: 31)
+    static let customRgb174 = UIColor.customsRGB(r: 174, g: 174, b: 174)
+    static let customRgb235 = UIColor.customsRGB(r: 235, g: 235, b: 235)
+    static let customRgb246 = UIColor.customsRGB(r: 246, g: 246, b: 246)
+    
     static func customsRGB(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat = 1) -> UIColor {
         return UIColor(red: r/255, green: g/255, blue: b/255, alpha: a)
     }

@@ -17,7 +17,8 @@
 		4CC15A4F2A42C61600C16FDD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A4E2A42C61600C16FDD /* Extensions.swift */; };
 		4CC15A512A42CA7E00C16FDD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A502A42CA7E00C16FDD /* BaseViewController.swift */; };
 		4CC15A562A42E39000C16FDD /* UbikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A552A42E39000C16FDD /* UbikeTableViewCell.swift */; };
-		4CC15A582A438A3800C16FDD /* DistrictPickTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A572A438A3800C16FDD /* DistrictPickTableViewCell.swift */; };
+		4CC15A582A438A3800C16FDD /* AreaPickTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC15A572A438A3800C16FDD /* AreaPickTableViewCell.swift */; };
+		4CC5946E2A458C43008CBBD6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC5946D2A458C43008CBBD6 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +34,8 @@
 		4CC15A4E2A42C61600C16FDD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4CC15A502A42CA7E00C16FDD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4CC15A552A42E39000C16FDD /* UbikeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbikeTableViewCell.swift; sourceTree = "<group>"; };
-		4CC15A572A438A3800C16FDD /* DistrictPickTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictPickTableViewCell.swift; sourceTree = "<group>"; };
+		4CC15A572A438A3800C16FDD /* AreaPickTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaPickTableViewCell.swift; sourceTree = "<group>"; };
+		4CC5946D2A458C43008CBBD6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				4CC15A452A42C37900C16FDD /* Model */,
 				4CC15A462A42C38200C16FDD /* View */,
 				4CC15A492A42C3A500C16FDD /* ViewModel */,
+				4CC5946F2A45B3CA008CBBD6 /* Service */,
 				4CC15A522A42D90600C16FDD /* Extensions */,
 			);
 			path = BatiOS_HW;
@@ -115,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				4CC15A552A42E39000C16FDD /* UbikeTableViewCell.swift */,
-				4CC15A572A438A3800C16FDD /* DistrictPickTableViewCell.swift */,
+				4CC15A572A438A3800C16FDD /* AreaPickTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -128,6 +131,14 @@
 				4CC15A4A2A42C3F700C16FDD /* MenuView.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4CC5946F2A45B3CA008CBBD6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4CC5946D2A458C43008CBBD6 /* NetworkManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,11 +213,12 @@
 			files = (
 				4CC15A4D2A42C41700C16FDD /* HomeViewController.swift in Sources */,
 				4CC15A4F2A42C61600C16FDD /* Extensions.swift in Sources */,
+				4CC5946E2A458C43008CBBD6 /* NetworkManager.swift in Sources */,
 				4CC15A4B2A42C3F700C16FDD /* MenuView.swift in Sources */,
 				4C4217552A42A9B500616A4B /* AppDelegate.swift in Sources */,
 				4CC15A442A42C37100C16FDD /* UbikeModel.swift in Sources */,
 				4CC15A512A42CA7E00C16FDD /* BaseViewController.swift in Sources */,
-				4CC15A582A438A3800C16FDD /* DistrictPickTableViewCell.swift in Sources */,
+				4CC15A582A438A3800C16FDD /* AreaPickTableViewCell.swift in Sources */,
 				4CC15A562A42E39000C16FDD /* UbikeTableViewCell.swift in Sources */,
 				4CC15A482A42C3A000C16FDD /* UbikeViewModel.swift in Sources */,
 			);
@@ -276,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -330,7 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

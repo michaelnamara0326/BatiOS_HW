@@ -44,7 +44,7 @@ class MenuView: UIView {
     private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("登入", for: .normal)
-        button.setTitleColor(.customsRGB(r: 181, g: 204, b: 34), for: .normal)
+        button.setTitleColor(.ubikeGreen, for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 20
         button.deactiveAutoresizingMask()
@@ -66,7 +66,7 @@ class MenuView: UIView {
             buttonStackView.addArrangedSubview(button)
         }
         
-        backgroundColor = .customsRGB(r: 181, g: 204, b: 34)
+        backgroundColor = .ubikeGreen
         addSubviews(views: [loginButton, buttonStackView])
         
         NSLayoutConstraint.activate([
